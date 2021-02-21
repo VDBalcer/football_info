@@ -12,7 +12,7 @@ class Player(models.Model):
 
 
 class Comment(models.Model):
-    author = models.CharField(max_length=25, blank=True, null=True)
+    author = models.CharField(max_length=25)
     text = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     player = models.ForeignKey(Player, on_delete=models.CASCADE)

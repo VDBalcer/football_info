@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Главная страница</title>
+
+
+    </head>
+    <body>
+
+        <h1>{{player.name}}</h1>
+        <h3>Родился {{ player.birth|date:"d M Y" }}</h3>
+        <p>{{ player.info|linebreaksbr }}</p>
+    <hr>
+    <h1>Комментарии:</h1>
+    {% for comment in comments %}
+    <h3>
+        {% if comment.author%}
+            Автор: {{ comment.author }}, </a>
+        {% else %}
+            Автор: Гость, </a>
+        {% endif %}
+        дата публикации: {{ comment.pub_date|date:"d M Y" }}</h3>
+        <p>{{ comment.text|linebreaksbr }}</p>
+    {% endfor %}
+    <hr>
+    <h1>Добавить комментарий</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Добавить</button>
+        {{message}}
+
+    </form>
+
+    </body>
+</html>
