@@ -1,30 +1,29 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Профиль игрока {{ player.name }}</title>
-    </head>
-    <body>
+{% extends "player_info/base.html" %}
 
-        <h1>{{ player.name }}</h1>
-        <h3>Родился {{ player.birth|date:"d M Y" }}</h3>
-        <p>{{ player.info|linebreaksbr }}</p>
-        <p>(просмотров профиля {{ views_count }})</p>
+{%block title %}<title>Профиль игрока {{ player.name }}</title>{% endblock %}
+
+{% block content %}
+    <h1>{{ player.name }}</h1>
+    <img src="{{ player.photo.url }}" class = "img-thumbnail" width="400">
+    <h4>Родился {{ player.birth|date:"d M Y" }}</h4>
+    <p>{{ player.info|linebreaksbr }}</p>
+    <p>(просмотров профиля: {{ views_count }})</p>
+    <a href="." class="btn btn-primary btm-lh">К списку игроков</a>
     <hr>
-    <h1>Комментарии:</h1>
+    <h2>Комментарии:</h2><br>
+    <div class="container">
     {% for comment in comments %}
-        <h3>Автор: {{ comment.author }}, дата публикации: {{ comment.pub_date|date:"d M Y" }}</h3>
+        <h5>Автор: {{ comment.author }}, дата публикации: {{ comment.pub_date|date:"d M Y" }}</h5>
         <p>{{ comment.text|linebreaksbr }}</p><br>
     {% endfor %}
+    </div>
     <hr>
 
-    <h1>Добавить комментарий</h1>
+    <h2>Добавить комментарий</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Добавить</button>
+        <button type="submit" class="btn btn-success btn-lg">Добавить</button>
         {{ message }}
     </form>
-
-    </body>
-</html>
+{% endblock %}

@@ -1,18 +1,21 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Главная страница</title>
-    </head>
-    <body>
-        <h1>Список игроков, доступных на сайте</h1>
-        {% for player in players %}
+{% extends "player_info/base.html" %}
+
+{% block title %}<title>Главная страница</title>{% endblock %}
+
+{% block content %}
+    <form method="get">
+        <p><input type="search" name="q" placeholder="Поиск игрока по имени" size = 40>
+        <input type="submit" value="Найти" class="btn btn-success btn-lg"></p>
+    </form>
+    <a href="../admin" class="btn btn-primary btm-lh">Админ панель</a>
+    <div class="container">
+    <h1>Список игроков, доступных на сайте</h1>
+    {% for player in players %}
         <h3>
-                Игрок: {{ player.name }}, родился: {{ player.birth|date:"d M Y" }}
+            Игрок: <a href="{{player.id}}">{{ player.name }}</a>, родился: {{ player.birth|date:"d M Y" }}
         </h3>
         <p>{{ player.info|linebreaksbr }}</p>
         <hr>
-        {% endfor %}
-    </body>
-</html>
+    {% endfor %}
+    </div>
+{% endblock %}
