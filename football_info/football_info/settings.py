@@ -21,10 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&p#=q--lq$ggnlm+z+@td$=+d*j5nk7^cm#_9*c$a632e(yog9'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '&p#=q--lq$ggnlm+z+@td$=+d*j5nk7^cm#_9*c$a632e(yog9')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
 ALLOWED_HOSTS = []
 
@@ -125,6 +125,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATICFILE_DIRS= (
+STATICFILE_DIRS = (
     os.path.join(BASE_DIR, 'static_dev'),
 )

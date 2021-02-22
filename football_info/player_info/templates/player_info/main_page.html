@@ -10,6 +10,9 @@
     <a href="../admin" class="btn btn-primary btm-lh">Админ панель</a>
     <div class="container">
     <h1>Список игроков, доступных на сайте</h1>
+        {% if not players %}
+        <h3>Похоже, никого нет :( </h3>
+        {% endif %}
     {% for player in players %}
         <h3>
             Игрок: <a href="{{player.id}}">{{ player.name }}</a>, родился: {{ player.birth|date:"d M Y" }}
