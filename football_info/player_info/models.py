@@ -16,3 +16,8 @@ class Comment(models.Model):
     text = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
+
+
+class ProfileViewing(models.Model):
+    ip = models.GenericIPAddressField()
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
