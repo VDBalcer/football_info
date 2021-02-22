@@ -3,12 +3,22 @@
 {%block title %}<title>Профиль игрока {{ player.name }}</title>{% endblock %}
 
 {% block content %}
-    <h1>{{ player.name }}</h1>
-    <img src="{{ player.photo.url }}" class = "img-thumbnail" width="400">
-    <h4>Родился {{ player.birth|date:"d M Y" }}</h4>
-    <p>{{ player.info|linebreaksbr }}</p>
-    <p>(просмотров профиля: {{ views_count }})</p>
-    <a href="." class="btn btn-primary btm-lh">К списку игроков</a>
+    <div class="row featurette">
+        <div class = "col-md-5">
+            <img src="{{ player.photo.url }}" class = "img-thumbnail" width="400">
+        </div>
+        <div class="col-md-7">
+            <div class = "featurette-heading">
+                <h1>{{ player.name }}</h1>
+            </div>
+            <div class="lead">
+                <h4>Родился {{ player.birth|date:"d M Y" }}</h4>
+                <p>{{ player.info|linebreaksbr }}</p>
+                <p>(просмотров профиля: {{ views_count }})</p>
+                <a href="." class="btn btn-primary btm-lh">К списку игроков</a>
+            </div>
+        </div>
+    </div>
     <hr>
     <h2>Комментарии:</h2><br>
     <div class="container">
